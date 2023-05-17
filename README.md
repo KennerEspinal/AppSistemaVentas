@@ -1,6 +1,10 @@
-# AppSistemaVenta
+# AppSistemaVenta with Angular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
+
+## Before 
+
+install node modules whith the command `npm i` or `npm install`
 
 ## Development server
 
