@@ -11,20 +11,20 @@ import { DetalleVenta } from 'src/app/Interfaces/detalle-venta';
 })
 export class ModalDetalleVentaComponent implements OnInit {
 
-  fechaRegistro:string = "";
-  numeroDocumento:string = "";
+  fechaRegistro: string = "";
+  numeroDocumento: string = "";
   tipoPago: string = "";
   total: string = "";
   detalleVenta: DetalleVenta[] = [];
-  columnasTabla :string[] = ['producto','cantidad','precio','total']
+  columnasTabla: string[] = ['producto', 'cantidad', 'precio', 'total']
 
-  constructor(  @Inject(MAT_DIALOG_DATA) public _venta: Venta) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public _venta: Venta) {
 
     this.fechaRegistro = _venta.fechaRegistro!;
     this.numeroDocumento = _venta.numeroDocumento!;
     this.tipoPago = _venta.tipoPago;
     this.total = _venta.totalTexto;
-    this.detalleVenta = _venta.detalleVenta; 
+    this.detalleVenta = _venta.detalleVenta;
 
   }
 

@@ -8,25 +8,25 @@ import { Sesion } from '../Interfaces/sesion';
 })
 export class UtilidadService {
 
-  constructor(private _snackBar:MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar) { }
 
 
-  mostrarAlerta(mensaje:string, tipo:string){
+  mostrarAlerta(mensaje: string, tipo: string) {
 
-    this._snackBar.open(mensaje,tipo , {
-      horizontalPosition:"end",
-      verticalPosition:"top",
-      duration:3000
+    this._snackBar.open(mensaje, tipo, {
+      horizontalPosition: "end",
+      verticalPosition: "top",
+      duration: 3000
     })
 
   }
 
 
-  guardarSesionUsuario(usuarioSession:Sesion){
-    localStorage.setItem("usuario",JSON.stringify(usuarioSession));
+  guardarSesionUsuario(usuarioSession: Sesion) {
+    localStorage.setItem("usuario", JSON.stringify(usuarioSession));
   }
 
-  obtenerSesionUsuario(){
+  obtenerSesionUsuario() {
 
     const dataCadena = localStorage.getItem("usuario");
 
@@ -34,7 +34,7 @@ export class UtilidadService {
     return usuario;
   }
 
-  eliminarSesionUsuario(){
+  eliminarSesionUsuario() {
 
     localStorage.removeItem("usuario")
   }

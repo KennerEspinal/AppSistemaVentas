@@ -11,23 +11,23 @@ import { Producto } from '../Interfaces/producto';
   providedIn: 'root'
 })
 export class ProductoService {
-  private urlApi:string = environment.endpoint + "Producto/";
+  private urlApi: string = environment.endpoint + "Producto/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  lista():Observable<ResponseApi>{
+  lista(): Observable<ResponseApi> {
     return this.http.get<ResponseApi>(`${this.urlApi}Lista`)
   }
 
-  guardar(request: Producto):Observable<ResponseApi>{
-    return this.http.post<ResponseApi>(`${this.urlApi}Guardar`,request)
+  guardar(request: Producto): Observable<ResponseApi> {
+    return this.http.post<ResponseApi>(`${this.urlApi}Guardar`, request)
   }
 
-  editar(request: Producto):Observable<ResponseApi>{
-    return this.http.put<ResponseApi>(`${this.urlApi}Editar`,request)
+  editar(request: Producto): Observable<ResponseApi> {
+    return this.http.put<ResponseApi>(`${this.urlApi}Editar`, request)
   }
 
-  eliminar(id: number):Observable<ResponseApi>{
+  eliminar(id: number): Observable<ResponseApi> {
     return this.http.delete<ResponseApi>(`${this.urlApi}Eliminar/${id}`)
   }
 

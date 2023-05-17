@@ -10,11 +10,11 @@ import { ResponseApi } from '../Interfaces/response-api';
 })
 export class DashBoardService {
 
-  private urlApi:string = environment.endpoint + "DashBoard/";
+  private urlApi: string = environment.endpoint + "DashBoard/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  resumen():Observable<ResponseApi>{
+  resumen(): Observable<ResponseApi> {
     return this.http.get<ResponseApi>(`${this.urlApi}Resumen`)
   }
 

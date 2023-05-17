@@ -15,9 +15,9 @@ import { UtilidadService } from 'src/app/Reutilizable/utilidad.service';
   styleUrls: ['./modal-producto.component.css']
 })
 export class ModalProductoComponent implements OnInit {
-  formularioProducto:FormGroup;
-  tituloAccion:string = "Agregar";
-  botonAccion:string = "Guardar";
+  formularioProducto: FormGroup;
+  tituloAccion: string = "Agregar";
+  botonAccion: string = "Guardar";
   listaCategorias: Categoria[] = [];
 
 
@@ -28,82 +28,82 @@ export class ModalProductoComponent implements OnInit {
     private _categoriaServicio: CategoriaService,
     private _productoServicio: ProductoService,
     private _utilidadServicio: UtilidadService
-  ) { 
+  ) {
 
     this.formularioProducto = this.fb.group({
-      nombre: ['',Validators.required],
-      idCategoria: ['',Validators.required],
-      stock: ['',Validators.required],
-      precio: ['',Validators.required],
-      esActivo: ['1',Validators.required]
+      nombre: ['', Validators.required],
+      idCategoria: ['', Validators.required],
+      stock: ['', Validators.required],
+      precio: ['', Validators.required],
+      esActivo: ['1', Validators.required]
     });
 
-    if(this.datosProducto != null){
+    if (this.datosProducto != null) {
 
       this.tituloAccion = "Editar";
       this.botonAccion = "Actualizar";
     }
 
 
-  this._categoriaServicio.lista().subscribe({
-        next: (data) => {
-          if(data.status) this.listaCategorias = data.value
-        },
-        error:(e) =>{}
-  })
+    this._categoriaServicio.lista().subscribe({
+      next: (data) => {
+        if (data.status) this.listaCategorias = data.value
+      },
+      error: (e) => { }
+    })
 
   }
 
   ngOnInit(): void {
-    if(this.datosProducto != null){
+    if (this.datosProducto != null) {
       this.formularioProducto.patchValue({
 
         nombre: this.datosProducto.nombre,
         idCategoria: this.datosProducto.idCategoria,
         stock: this.datosProducto.stock,
         precio: this.datosProducto.precio,
-        esActivo : this.datosProducto.esActivo.toString()
+        esActivo: this.datosProducto.esActivo.toString()
       });
 
     }
   }
 
-  guardarEditar_Producto(){
+  guardarEditar_Producto() {
 
     const _producto: Producto = {
-      idProducto : this.datosProducto == null ? 0 : this.datosProducto.idProducto,
-      nombre : this.formularioProducto.value.nombre,
+      idProducto: this.datosProducto == null ? 0 : this.datosProducto.idProducto,
+      nombre: this.formularioProducto.value.nombre,
       idCategoria: this.formularioProducto.value.idCategoria,
       descripcionCategoria: "",
-      precio  : this.formularioProducto.value.precio,
+      precio: this.formularioProducto.value.precio,
       stock: this.formularioProducto.value.stock,
       esActivo: parseInt(this.formularioProducto.value.esActivo),
     }
 
-    if(this.datosProducto == null){
+    if (this.datosProducto == null) {
 
       this._productoServicio.guardar(_producto).subscribe({
-        next: (data) =>{
-          if(data.status){
-            this._utilidadServicio.mostrarAlerta("El producto fue registrado","Exito");
+        next: (data) => {
+          if (data.status) {
+            this._utilidadServicio.mostrarAlerta("El producto fue registrado", "Exito");
             this.modalActual.close("true")
-          }else
-            this._utilidadServicio.mostrarAlerta("No se pudo registrar el producto","Error")
+          } else
+            this._utilidadServicio.mostrarAlerta("No se pudo registrar el producto", "Error")
         },
-        error:(e) => {}
+        error: (e) => { }
       })
 
-    }else{
+    } else {
 
       this._productoServicio.editar(_producto).subscribe({
-        next: (data) =>{
-          if(data.status){
-            this._utilidadServicio.mostrarAlerta("El producto fue editado","Exito");
+        next: (data) => {
+          if (data.status) {
+            this._utilidadServicio.mostrarAlerta("El producto fue editado", "Exito");
             this.modalActual.close("true")
-          }else
-            this._utilidadServicio.mostrarAlerta("No se pudo editar el producto","Error")
+          } else
+            this._utilidadServicio.mostrarAlerta("No se pudo editar el producto", "Error")
         },
-        error:(e) => {}
+        error: (e) => { }
       })
     }
 

@@ -13,14 +13,14 @@ import { UtilidadService } from 'src/app/Reutilizable/utilidad.service';
 })
 export class LayoutComponent implements OnInit {
 
-  listaMenus:Menu[] = [];
-  correoUsuario:string = '';
-  rolUsuario:string = '';
+  listaMenus: Menu[] = [];
+  correoUsuario: string = '';
+  rolUsuario: string = '';
 
 
   constructor(
-    private router:Router,
-    private _menuServicio : MenuService,
+    private router: Router,
+    private _menuServicio: MenuService,
     private _utilidadServicio: UtilidadService
   ) { }
 
@@ -28,17 +28,17 @@ export class LayoutComponent implements OnInit {
 
     const usuario = this._utilidadServicio.obtenerSesionUsuario();
 
-    if(usuario != null){
+    if (usuario != null) {
 
       this.correoUsuario = usuario.correo;
       this.rolUsuario = usuario.rolDescripcion;
 
 
       this._menuServicio.lista(usuario.idUsuario).subscribe({
-        next: (data) =>{
-          if(data.status) this.listaMenus = data.value;
+        next: (data) => {
+          if (data.status) this.listaMenus = data.value;
         },
-        error:(e)=>{}
+        error: (e) => { }
       })
 
     }
@@ -46,7 +46,7 @@ export class LayoutComponent implements OnInit {
   }
 
 
-  cerrarSesion(){
+  cerrarSesion() {
     this._utilidadServicio.eliminarSesionUsuario();
     this.router.navigate(['login']);
   }
