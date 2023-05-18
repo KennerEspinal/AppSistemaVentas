@@ -9,6 +9,7 @@ import { ProductoComponent } from './Pages/producto/producto.component';
 import { ReporteComponent } from './Pages/reporte/reporte.component';
 import { UsuarioComponent } from './Pages/usuario/usuario.component';
 import { VentaComponent } from './Pages/venta/venta.component';
+import { CategoriaComponent } from './Pages/categoria/categoria.component';
 
 
 
@@ -21,7 +22,8 @@ const routes: Routes = [{
     {path:'productos',component:ProductoComponent},
     {path:'venta',component:VentaComponent},
     {path:'historial_venta',component:HistorialVentaComponent},
-    {path:'reportes',component:ReporteComponent}
+    {path:'reportes',component:ReporteComponent},
+    {path: 'categorias', component:CategoriaComponent}
   ]
 }];
 
