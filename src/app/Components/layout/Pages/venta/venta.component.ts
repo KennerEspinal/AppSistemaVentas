@@ -26,9 +26,6 @@ export class VentaComponent implements OnInit {
   listaProductosParaVenta: DetalleVenta[] = [];
   bloquearBotonRegistrar: boolean = false;
 
-  idCliente: string = '';
-  nomCliente: string = '';
-
   productoSeleccionado!: Producto;
   tipodePagoPorDefecto: string = "Efectivo";
   totalPagar: number = 0;
@@ -52,8 +49,6 @@ export class VentaComponent implements OnInit {
 
 
     this.formularioProductoVenta = this.fb.group({
-      idCliente: ['', Validators.required],
-      nomCliente: ['', Validators.required],
       producto: ['', Validators.required],
       cantidad: ['', Validators.required]
     });
@@ -122,38 +117,38 @@ export class VentaComponent implements OnInit {
   }
 
   registrarVenta() {
+
     if (this.listaProductosParaVenta.length > 0) {
+
       this.bloquearBotonRegistrar = true;
-  
+
       const request: Venta = {
-        idCliente: this.formularioProductoVenta.value.idCliente,
-        nomCliente: this.formularioProductoVenta.value.nomCliente,
         tipoPago: this.tipodePagoPorDefecto,
         totalTexto: String(this.totalPagar.toFixed(2)),
         detalleVenta: this.listaProductosParaVenta
       }
-  
+
       this._ventaServicio.registrar(request).subscribe({
         next: (response) => {
           if (response.status) {
             this.totalPagar = 0.00;
             this.listaProductosParaVenta = [];
             this.datosDetalleVenta = new MatTableDataSource(this.listaProductosParaVenta);
-  
+
             Swal.fire({
               icon: 'success',
               title: 'Venta Registrada!',
               text: `Numero de venta: ${response.value.numeroDocumento}`
-            });
-          } else {
+            })
+          } else
             this._utilidadServicio.mostrarAlerta("No se pudo registrar la venta", "Oops");
-          }
         },
         complete: () => {
           this.bloquearBotonRegistrar = false;
         },
         error: (e) => { }
-      });
+      })
+
     }
   }
 

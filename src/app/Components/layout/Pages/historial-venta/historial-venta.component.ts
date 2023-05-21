@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
@@ -40,7 +40,7 @@ export class HistorialVentaComponent implements OnInit, AfterViewInit {
     { value: "fecha", descripcion: "Por fechas" },
     { value: "numero", descripcion: "Numero venta" }
   ]
-  columnasTabla: string[] = ['fechaRegistro', 'numeroDocumento','idCliente', 'nomCliente', 'tipoPago', 'total', 'accion']
+  columnasTabla: string[] = ['fechaRegistro', 'numeroDocumento', 'tipoPago', 'total', 'accion']
   dataInicio: Venta[] = [];
   datosListaVenta = new MatTableDataSource(this.dataInicio);
   @ViewChild(MatPaginator) paginacionTabla!: MatPaginator;
