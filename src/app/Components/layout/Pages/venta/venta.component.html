@@ -6,6 +6,27 @@
       [formGroup]="formularioProductoVenta"
       (ngSubmit)="agregarProductoParaVenta()"
     >
+      <h1>Datos del Cliente</h1>
+      <mat-grid-list cols="4" rowHeight="80px">
+        <mat-grid-tile>
+          <mat-form-field
+            class="full-width"
+            appearance="fill"
+            style="margin-right: 40px"
+          >
+            <mat-label>Identificación</mat-label>
+            <input matInput type="text" formControlName="idCliente" />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="2">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Cliente</mat-label>
+            <input matInput type="text" formControlName="nomCliente" />
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <h1>Productos</h1>
       <mat-grid-list cols="4" rowHeight="80px">
         <mat-grid-tile [colspan]="2">
           <mat-form-field class="full-width" appearance="fill">
